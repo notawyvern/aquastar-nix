@@ -1,6 +1,4 @@
 {
-  description = "One app. All your favorite Artix games.";
-
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   outputs =
