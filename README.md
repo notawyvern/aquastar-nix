@@ -1,19 +1,33 @@
 # AquaStar Launcher for Nix
 
+- [Support](#support)
 - [Testing](#testing)
 - [Install](#install)
 
+## Support
+
+macOS is currently not available, only Linux. Architectures follow.
+
+**A Tier**: Tested on my hardware.
+
+- x86_64
+
+**B Tier**: Verified hashes.
+
+- i686
+- armv7l
+
 ## Testing
 
-Through Nix, this one-liner can run the package before install:
+This one-liner of Nix can run the package before install:
 
 ```sh
-NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:notawyvern/aquastar-nix
+NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:notawyvern/aquastar-nix#aquastar
 ```
 
 ## Install
 
-Only x86_64 arch is currently supported. After [allowing unfree packages](https://wiki.nixos.org/wiki/Unfree_software) and inheriting inputs, use flakes or adapt it accordingly:
+First [allow unfree packages](https://wiki.nixos.org/wiki/Unfree_software) and inherit inputs, then use flakes or adapt it accordingly:
 
 ```nix
 inputs = {
