@@ -7,20 +7,20 @@
 
 let
   pname = "AquaStar";
-  version = "2.0.0";
+  version = "2.1.0";
 
   sources = {
     "x86_64-linux" = {
       name = "AquaStar-${version}.AppImage";
-      hash = "sha256-mcGxNtMKItQAhyAKQOzoVndDNvr71bQTb+6L9zWNirc=";
+      hash = "sha256-FVpTNk1xVU2pGRxml421MNLubBYMBEOp3Kw74RtTJ0M=";
     };
     "armv7l-linux" = {
       name = "AquaStar-${version}-armv7l.AppImage";
-      hash = "sha256-J2oyrr88OLg5gWVQCdqeo+X4Gj5bumvoDoLRteIv1Wk=";
+      hash = "sha256-6IyaiYAG9rJ4JHhtyfrATr+JxuNa2MfNueZenNx87gA=";
     };
     "i686-linux" = {
       name = "AquaStar-${version}-i386.AppImage";
-      hash = "sha256-Mvzd2u43OcNjN8HUN+I51qxh7D7CoJqrfj0IJVbKCY8=";
+      hash = "sha256-QCxXzeV3zBnI40xKt/CZQjgT/fGwMQn47IGinmDDDfo=";
     };
   };
   appimage = sources.${stdenv.hostPlatform.system};
