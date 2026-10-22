@@ -6,7 +6,7 @@
 }:
 
 let
-  pname = "AquaStar";
+  pname = "AquaStar2";
   version = "2.1.0";
 
   sources = {

@@ -11,10 +11,14 @@
           pkg:
           builtins.elem (pkgs.lib.getName pkg) [
             "AquaStar"
+            "AquaStar2"
           ];
       };
     in
     {
-      packages.${system}.aquastar = pkgs.callPackage ./package.nix { };
+      packages.${system} = {
+        aquastar2 = pkgs.callPackage ./pkgs/aquastar2 { };
+        aquastar = pkgs.callPackage ./pkgs/aquastar { };
+      };
     };
 }
