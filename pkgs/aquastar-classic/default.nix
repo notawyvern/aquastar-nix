@@ -2,18 +2,25 @@
   appimageTools,
   fetchurl,
   lib,
-  makeWrapper,
   stdenv,
 }:
 
 let
-  pname = "AquaStar";
-  version = "3.0.0-rc.6";
+  pname = "aquastar-classic";
+  version = "2.1.0";
 
   sources = {
     "x86_64-linux" = {
-      name = "AquaStar_${version}_amd64.AppImage";
-      hash = "sha256-NCJPK92Bb9YEtnHBU6EnGC46kj9Qmiryb5Ppwm+JYco=";
+      name = "AquaStar-${version}.AppImage";
+      hash = "sha256-FVpTNk1xVU2pGRxml421MNLubBYMBEOp3Kw74RtTJ0M=";
+    };
+    "armv7l-linux" = {
+      name = "AquaStar-${version}-armv7l.AppImage";
+      hash = "sha256-6IyaiYAG9rJ4JHhtyfrATr+JxuNa2MfNueZenNx87gA=";
+    };
+    "i686-linux" = {
+      name = "AquaStar-${version}-i386.AppImage";
+      hash = "sha256-QCxXzeV3zBnI40xKt/CZQjgT/fGwMQn47IGinmDDDfo=";
     };
   };
   appimage = sources.${stdenv.hostPlatform.system};
@@ -30,29 +37,24 @@ in
 appimageTools.wrapType2 {
   inherit pname version src;
 
-  # so we have fonts on the launcher
-  profile = ''
-    export FONTCONFIG_FILE=/etc/fonts/fonts.conf
-  '';
-
   passthru = {
     inherit appimageContents;
   };
 
   extraInstallCommands = ''
     install -Dm444 \
-      ${appimageContents}/usr/share/applications/AquaStar.desktop \
+      ${appimageContents}/aquastar.desktop \
       -t $out/share/applications/
 
     install -Dm444 \
-      ${appimageContents}/AquaStar.png \
-      $out/share/icons/hicolor/512x512/apps/aquastar-lite.png
+      ${appimageContents}/resources/app/Icon/Icon.png \
+      $out/share/icons/hicolor/256x256/apps/aquastar.png
 
     substituteInPlace \
-      $out/share/applications/AquaStar.desktop \
+      $out/share/applications/aquastar.desktop \
       --replace-fail \
-      Exec=aquastar-lite \
-      Exec=$out/bin/AquaStar
+      'Exec=AppRun --no-sandbox %U' \
+      "Exec=$out/bin/AquaStar %U"
   '';
 
   meta = {

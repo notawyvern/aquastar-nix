@@ -8,11 +8,11 @@
 
 ## Support
 
-### v3
+### Neo
 
 Only Linux x86_64 is supported.
 
-### v2
+### Classic
 
 macOS is currently not available, only Linux. Architectures, verified by hashes, follow.
 
@@ -22,10 +22,10 @@ macOS is currently not available, only Linux. Architectures, verified by hashes,
 
 ## Testing
 
-This one-liner of Nix can run aquastar v3 before install:
+This one-liner of Nix can run aquastar neo before install:
 
 ```sh
-NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:notawyvern/aquastar-nix#aquastar
+NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:notawyvern/aquastar-nix#aquastar-neo
 ```
 
 ## Install
@@ -41,12 +41,12 @@ inputs = {
 
 ```nix
 enviroment.systemPackages = [
-    inputs.aquastar-nix.packages.${pkgs.stdenv.hostPlatform.system}.aquastar
+    inputs.aquastar-nix.packages.${pkgs.stdenv.hostPlatform.system}.aquastar-neo
 ];
 ```
 
 ```nix
 enviroment.systemPackages = [
-    inputs.aquastar-nix.packages.${pkgs.stdenv.hostPlatform.system}.aquastar2
+    inputs.aquastar-nix.packages.${pkgs.stdenv.hostPlatform.system}.aquastar-classic
 ];
 ```

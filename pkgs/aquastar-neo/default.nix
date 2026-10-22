@@ -2,31 +2,24 @@
   appimageTools,
   fetchurl,
   lib,
+  makeWrapper,
   stdenv,
 }:
 
 let
-  pname = "AquaStar2";
-  version = "2.1.0";
+  pname = "aquastar-neo";
+  version = "1.0.0";
 
   sources = {
     "x86_64-linux" = {
-      name = "AquaStar-${version}.AppImage";
-      hash = "sha256-FVpTNk1xVU2pGRxml421MNLubBYMBEOp3Kw74RtTJ0M=";
-    };
-    "armv7l-linux" = {
-      name = "AquaStar-${version}-armv7l.AppImage";
-      hash = "sha256-6IyaiYAG9rJ4JHhtyfrATr+JxuNa2MfNueZenNx87gA=";
-    };
-    "i686-linux" = {
-      name = "AquaStar-${version}-i386.AppImage";
-      hash = "sha256-QCxXzeV3zBnI40xKt/CZQjgT/fGwMQn47IGinmDDDfo=";
+      name = "aquastar-neo_${version}_amd64.AppImage";
+      hash = "sha256-YsCaJ/iBFJZzYfcCZsUoGng9i/OLvPGdIMIU2JnKjis=";
     };
   };
   appimage = sources.${stdenv.hostPlatform.system};
 
   src = fetchurl {
-    url = "https://github.com/aquaspy/AquaStar/releases/download/v${version}/${appimage.name}";
+    url = "https://github.com/aquaspy/AquaStar/releases/download/neo-v${version}/${appimage.name}";
     inherit (appimage) hash;
   };
 
@@ -37,24 +30,29 @@ in
 appimageTools.wrapType2 {
   inherit pname version src;
 
+  # so we have fonts on the launcher
+  profile = ''
+    export FONTCONFIG_FILE=/etc/fonts/fonts.conf
+  '';
+
   passthru = {
     inherit appimageContents;
   };
 
   extraInstallCommands = ''
     install -Dm444 \
-      ${appimageContents}/aquastar.desktop \
+      ${appimageContents}/usr/share/applications/AquaStar\ NEO.desktop \
       -t $out/share/applications/
 
     install -Dm444 \
-      ${appimageContents}/resources/app/Icon/Icon.png \
-      $out/share/icons/hicolor/256x256/apps/aquastar.png
+      ${appimageContents}/AquaStar\ NEO.png \
+      $out/share/icons/hicolor/512x512/apps/aquastar-neo.png
 
     substituteInPlace \
-      $out/share/applications/aquastar.desktop \
+      $out/share/applications/AquaStar\ NEO.desktop \
       --replace-fail \
-      'Exec=AppRun --no-sandbox %U' \
-      "Exec=$out/bin/AquaStar %U"
+      Exec=aquastar-neo \
+      Exec=$out/bin/aquastar-neo
   '';
 
   meta = {

@@ -10,15 +10,15 @@
         config.allowUnfreePredicate =
           pkg:
           builtins.elem (pkgs.lib.getName pkg) [
-            "AquaStar"
-            "AquaStar2"
+            "aquastar-neo"
+            "aquastar-classic"
           ];
       };
     in
     {
       packages.${system} = {
-        aquastar2 = pkgs.callPackage ./pkgs/aquastar2 { };
-        aquastar = pkgs.callPackage ./pkgs/aquastar { };
+        aquastar-neo = pkgs.callPackage ./pkgs/aquastar-neo { };
+        aquastar-classic = pkgs.callPackage ./pkgs/aquastar-classic { };
       };
     };
 }
