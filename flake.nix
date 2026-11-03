@@ -12,6 +12,7 @@
           builtins.elem (pkgs.lib.getName pkg) [
             "aquastar-neo"
             "aquastar-classic"
+            "aquastar-classic-exp"
           ];
       };
     in
@@ -19,6 +20,7 @@
       packages.${system} = {
         aquastar-neo = pkgs.callPackage ./pkgs/aquastar-neo { };
         aquastar-classic = pkgs.callPackage ./pkgs/aquastar-classic { };
+        aquastar-classic-exp = pkgs.callPackage ./pkgs/aquastar-classic-exp { };
       };
     };
 }
