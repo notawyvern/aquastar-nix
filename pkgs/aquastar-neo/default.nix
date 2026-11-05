@@ -2,18 +2,19 @@
   appimageTools,
   fetchurl,
   lib,
+  pkgs,
   makeWrapper,
   stdenv,
 }:
 
 let
   pname = "aquastar-neo";
-  version = "1.0.0";
+  version = "1.0.3";
 
   sources = {
     "x86_64-linux" = {
       name = "aquastar-neo_${version}_amd64.AppImage";
-      hash = "sha256-YsCaJ/iBFJZzYfcCZsUoGng9i/OLvPGdIMIU2JnKjis=";
+      hash = "sha256-i9nIwWgcuh+I+8Co/2+3W49l4j6q45U7d+u6OIFroTc=";
     };
   };
   appimage = sources.${stdenv.hostPlatform.system};
@@ -29,6 +30,12 @@ let
 in
 appimageTools.wrapType2 {
   inherit pname version src;
+
+  extraPkgs =
+    pkgs: with pkgs; [
+      # required to run
+      libgpg-error
+    ];
 
   # so we have fonts on the launcher
   profile = ''
