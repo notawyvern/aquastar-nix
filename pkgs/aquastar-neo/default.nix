@@ -9,12 +9,12 @@
 
 let
   pname = "aquastar-neo";
-  version = "1.0.4";
+  version = "1.0.5";
 
   sources = {
     "x86_64-linux" = {
       name = "aquastar-neo_${version}_amd64.AppImage";
-      hash = "sha256-DXP3QIqY7/YYSJRXjEb8u+d2pBV9czdgrgI7CR3UAnA=";
+      hash = "sha256-NQau8ADbk+YLVewWq4peM7QlkFoLHMIqirta3PkxIC4=";
     };
   };
   appimage = sources.${stdenv.hostPlatform.system};
