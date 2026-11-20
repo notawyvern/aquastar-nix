@@ -72,7 +72,6 @@ stdenv.mkDerivation {
 
     mkdir -p \
       $out/bin \
-      $out/lib/ruffle-artix \
       $out/share/applications \
       $out/share
 
