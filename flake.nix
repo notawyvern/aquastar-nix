@@ -13,6 +13,7 @@
             "aquastar-neo"
             "aquastar-classic"
             "aquastar-classic-exp"
+            "ruffle-artix"
           ];
       };
     in
@@ -21,6 +22,7 @@
         aquastar-neo = pkgs.callPackage ./pkgs/aquastar-neo { };
         aquastar-classic = pkgs.callPackage ./pkgs/aquastar-classic { };
         aquastar-classic-exp = pkgs.callPackage ./pkgs/aquastar-classic-exp { };
+        ruffle-artix = pkgs.callPackage ./pkgs/ruffle-artix { };
       };
     };
 }
